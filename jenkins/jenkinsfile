@@ -9,5 +9,12 @@ pipeline {
             }
         }
 
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+                bat 'cd app\\devsecops-app && mvn clean package -DskipTests'
+            }
+        }
+
     }
 }
