@@ -21,6 +21,14 @@ pipeline {
                 bat 'cd app\\devsecops-app && mvn test'
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                echo 'Running SonarQube code analysis...'
+                withSonarQubeEnv('SonarQube') {
+                bat 'cd app\\devsecops-app && mvn sonar:sonar -Dsonar.projectKey=Enterprise-DevSecOps-CI-CD -Dsonar.projectName=Enterprise-DevSecOps-CI-CD'
+        }
+    }
+}
 
     }
 }
