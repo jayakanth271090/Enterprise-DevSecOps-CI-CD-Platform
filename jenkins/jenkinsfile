@@ -15,6 +15,12 @@ pipeline {
                 bat 'cd app\\devsecops-app && mvn clean package -DskipTests'
             }
         }
+        stage('Test') {
+            steps {
+                echo 'Running application tests...'
+                bat 'cd app\\devsecops-app && mvn test'
+            }
+        }
 
     }
 }
