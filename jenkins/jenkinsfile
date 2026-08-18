@@ -14,7 +14,7 @@ pipeline {
                 echo 'Building the application...'
                 bat 'cd app\\devsecops-app && mvn clean package -DskipTests'
             }
-        }
+        }        
         stage('Test') {
             steps {
                 echo 'Running application tests...'
@@ -37,6 +37,11 @@ pipeline {
                 }
             }
         } 
-
+        stage('Docker Build') {
+            steps {
+                echo 'Building Docker image...'
+                bat 'docker build -f docker\\Dockerfile -t devsecops-app:latest .'
+            }
+        }
     }
 }
